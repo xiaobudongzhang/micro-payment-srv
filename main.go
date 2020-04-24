@@ -1,12 +1,13 @@
 package main
 
 import (
-	log "github.com/micro/go-micro/v2/logger"
-	"github.com/micro/go-micro/v2"
-	"micro-payment-srv/handler"
-	"micro-payment-srv/subscriber"
+	"github.com/xiaobudongzhang/micro-payment-srv/handler"
+	"github.com/xiaobudongzhang/micro-payment-srv/subscriber"
 
-	payment "micro-payment-srv/proto/payment"
+	"github.com/micro/go-micro/v2"
+	log "github.com/micro/go-micro/v2/logger"
+
+	payment "github.com/xiaobudongzhang/micro-payment-srv/proto/payment"
 )
 
 func main() {
