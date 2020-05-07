@@ -1,12 +1,11 @@
-module micro-payment-srv
+module github.com/xiaobudongzhang/micro-payment-srv
 
 go 1.14
 
-replace github.com/xiaobudongzhang/micro-payment-srv => /root/microdemo/micro-payment-srv
+replace github.com/xiaobudongzhang/micro-payment-srv => /data/ndemo/micro-payment-srv
 
 require (
-	github.com/golang/protobuf v1.3.5
-	github.com/micro/go-micro v1.18.0
+	github.com/golang/protobuf v1.4.1
 	github.com/micro/go-micro/v2 v2.5.0
-	github.com/xiaobudongzhang/micro-payment-srv v0.0.0-00010101000000-000000000000
+	google.golang.org/protobuf v1.22.0
 )

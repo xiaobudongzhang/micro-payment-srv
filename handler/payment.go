@@ -3,46 +3,34 @@ package handler
 import (
 	"context"
 
-	log "github.com/micro/go-micro/v2/logger"
+	"github.com/micro/go-micro/v2/util/log"
 
-	payment "github.com/xiaobudongzhang/micro-payment-srv/proto/payment"
+	proto "github.com/xiaobudongzhang/micro-payment-srv/proto/payment"
 )
 
-type Payment struct{}
+var (
+	paymentService payment.Service
+)
 
-// Call is a single request handler called via client.Call or the generated client code
-func (e *Payment) Call(ctx context.Context, req *payment.Request, rsp *payment.Response) error {
-	log.Info("Received Payment.Call request")
-	rsp.Msg = "Hello " + req.Name
-	return nil
+type Service struct {
+} 
+
+func Init() {
+	paymentService, _ = payment.GetService()
 }
 
-// Stream is a server side stream handler called via client.Stream or the generated client code
-func (e *Payment) Stream(ctx context.Context, req *payment.StreamingRequest, stream payment.Payment_StreamStream) error {
-	log.Infof("Received Payment.Stream request with count: %d", req.Count)
+func (e *Service) PayOrder(ctx context.Context, req *proto.Request, rsp *proto.Response) (err error) {
+	log.Log("[PayOrder]收到支付请求")
 
-	for i := 0; i < int(req.Count); i++ {
-		log.Infof("Responding: %d", i)
-		if err := stream.Send(&payment.StreamingResponse{
-			Count: int64(i),
-		}); err != nil {
-			return err
+	err = paymentService.PayOrder(req.OrderId)
+	if err != nil {
+		rsp.Success = false
+		rsp.Error = &proto.Error {
+			Detail: err.Error(),
 		}
+		return
 	}
 
-	return nil
-}
-
-// PingPong is a bidirectional stream handler called via client.Stream or the generated client code
-func (e *Payment) PingPong(ctx context.Context, stream payment.Payment_PingPongStream) error {
-	for {
-		req, err := stream.Recv()
-		if err != nil {
-			return err
-		}
-		log.Infof("Got ping %v", req.Stroke)
-		if err := stream.Send(&payment.Pong{Stroke: req.Stroke}); err != nil {
-			return err
-		}
-	}
+	rsp.Success = true
+	return
 }

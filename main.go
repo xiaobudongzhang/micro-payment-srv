@@ -2,8 +2,6 @@ package main
 
 import (
 	"github.com/xiaobudongzhang/micro-payment-srv/handler"
-	"github.com/xiaobudongzhang/micro-payment-srv/subscriber"
-
 	"github.com/micro/go-micro/v2"
 	log "github.com/micro/go-micro/v2/logger"
 
