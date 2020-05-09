@@ -11,8 +11,8 @@ import (
 
 	basic "github.com/xiaobudongzhang/micro-basic/basic"
 	"github.com/xiaobudongzhang/micro-basic/config"
-	"github.com/xiaobudongzhang/micro-inventory-srv/model"
 	"github.com/xiaobudongzhang/micro-payment-srv/handler"
+	"github.com/xiaobudongzhang/micro-payment-srv/model"
 
 	payment "github.com/xiaobudongzhang/micro-payment-srv/proto/payment"
 )
