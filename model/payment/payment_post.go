@@ -6,7 +6,7 @@ import (
 
 	"github.com/micro/go-micro/v2/util/log"
 	"github.com/xiaobudongzhang/micro-basic/common"
-	"github.com/xiaobudongzhang/micro-basic/db"
+	"github.com/xiaobudongzhang/micro-plugins/db"
 
 	invS "github.com/xiaobudongzhang/micro-inventory-srv/proto/inventory"
 	ordS "github.com/xiaobudongzhang/micro-order-srv/proto/order"
